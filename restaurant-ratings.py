@@ -1,4 +1,6 @@
 # your code goes here
+import random
+
 def restaurant_dict_from_file(filename):
     """returns sorted list of restaurants and their ratings"""
 
@@ -30,8 +32,20 @@ def restaurant_dict_from_user_input():
     
     return restaurant_from_user
 
+def random_selection(restaurant_dict):
+    """Selects one random restaurant and rating from the dictionary."""
+    run_again = None
 
-# print restaurant_dict_from_user_input()
+    while run_again != "q":
+        random_restaurant = random.choice(restaurant_dict.keys())
+        print "The rating of {} is {}".format(random_restaurant, restaurant_dict[random_restaurant])
+        new_rating = raw_input("Please input a new rating for {}.>>>".format(random_restaurant))
+        restaurant_dict[random_restaurant] = int(new_rating)
+        run_again = raw_input("Would you like to play again? Type 'q' if no. >>>").lower()
+
+    return restaurant_dict
+
+random_selection({'a':1,'b':2,'c':3,'d':4,'e':5})
 
 def combine_and_sort():
     """Combines dictionary from file and dictionary from user, sorts and prints list."""
@@ -61,4 +75,4 @@ def combine_and_sort():
     for restaurant in sorted_complete_restaurant:
         print "{} is rated at {}.".format(restaurant,complete_restaurant[restaurant])
 
-combine_and_sort()
+#combine_and_sort()
